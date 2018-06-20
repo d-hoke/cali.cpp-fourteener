@@ -1,1 +1,2 @@
-g++ -g -I/usr/local/include/mapnik -I/opt/local/include -I/opt/local/include/freetype2 -I../../agg/include -L/usr/local/lib -L/opt/local/lib -lmapnik  -lboost_thread-mt -licuuc cali.cpp -o cali
+#g++ -g -I/usr/local/include/mapnik -I/opt/local/include -I/opt/local/include/freetype2 -I../../agg/include -L/usr/local/lib -L/opt/local/lib -lmapnik  -lboost_thread-mt -licuuc cali.cpp -o cali
+g++ -m64 -DBIGINT -g -I/usr/local/include/mapnik -I/opt/local/include -I/opt/local/include/freetype2 -I../../agg/include -L/usr/local/lib -L/opt/local/lib -L/cygdrive/f/dev/mapnik/cygwin64/mapnik.v3.x.xx.D.git/src  cali.cpp -o cali.exe -Wl,-dll-search-prefix=cyg -Wl,--start-group -lmapnik -lboost_thread -licuuc -Wl,--end-group
