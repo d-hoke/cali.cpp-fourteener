@@ -36,12 +36,10 @@
 #include <mapnik/load_map.hpp>
 #include <mapnik/geometry.hpp>
 #include <mapnik/vertex.hpp>
-//#include <mapnik/vertex_adapters.hpp>
 #include <mapnik/feature_type_style.hpp>
 #include <mapnik/json/json_grammar_config.hpp>
 #include <mapnik/symbolizer_keys.hpp>
 #include <mapnik/css_color_grammar_x3_def.hpp>
-//#include <mapnik/css_color_grammar_x3.hpp>
 #include <mapnik/image_filter_types.hpp>
 #include <mapnik/geometry/point.hpp>
 
@@ -60,37 +58,19 @@ private:
 };
 
 using oldvertex2d = mapnik::vertex2d;
-//using oldvertex2d = mapnik::vertex<double>; //defaults dim to 2, gets 'populated' version with methods...
 using geometry2d = mapnik::geometry::geometry<oldvertex2d>;
-#if 1
-//TBD: figure out how to update to current mapnik APIs...
-//using point_impl = mapnik::geometry::point<mapnik::vertex2d>;
 void point_datasource::add_point(double x, double y, 
 				 const char* key, const char* value)
 {
 	using namespace mapnik;
     auto ctx = std::make_shared<mapnik::context_type>();
 	feature_ptr feature(feature_factory::create(ctx,feat_id++));
-	//geometry2d * pt = new geometry2d; //point_impl;
-	//pt->move_to(x,y);
-//    oldvertex2d loc(x,y,SEG_END); //TBD: what are 'command' options, this only one found so far...
-    //vertex2d loc(x,y,SEG_MOVETO); //TBD: what are 'command' options, this only one found so far...
-    //geometry2d * pt = new geometry2d(loc);
-//    geometry2d pt(loc);
-    //geometry2d pt(x,y,SEG_END);
-//	feature->set_geometry(pt);
-    //mapnik::point_impl apoint(x,y,SEG_END);
     mapnik::geometry::point<double> apoint(x,y);
     feature->set_geometry(apoint);
-    //geometry2d pts;
-    //pts.push_back(loc);
-	//feature->set_geometry(pts);
 	transcoder tr("utf-8");
-	//(*feature)[key] = tr.transcode(value);
     feature->put(key,tr.transcode(value));
 	this->push(feature);
 }
-#endif
 
 using Color = mapnik::color;
 
@@ -106,7 +86,7 @@ int main ( int argc , char** argv)
     try {
         std::string mapnik_dir(argv[1]);
         datasource_cache::instance().register_datasources(mapnik_dir + "/plugins/input/shape");
-        freetype_engine::register_font(mapnik_dir + "/fonts/dejavu-ttf-2.14/DejaVuSans.ttf");
+        freetype_engine::register_font(mapnik_dir + "/fonts/dejavu-ttf-2.37/ttf/DejaVuSans.ttf");
 
         Map m(1080,680);
         m.set_background(Color(220, 226, 240));
@@ -172,7 +152,7 @@ int main ( int argc , char** argv)
         {
             parameters p;
             p["type"]="shape";
-            p["file"]="../data/statesp020"; // State Boundaries of the United States [SHP]
+            p["file"]="../usgs_statesp020/statesp020"; // State Boundaries of the United States [SHP]
             //p["encoding"] = "utf8";
 
             layer lyr("Cali");
