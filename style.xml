@@ -12,7 +12,7 @@
   </Style>
   <Style name="mtn">
     <Rule>
-      <PointSymbolizer file="../viewer/images/info.png" type="png" width="32" height="32" allow_overlap="true"/>
+      <PointSymbolizer file="./viewer/images/crosshair16x16.svg" type="svg" width="16" height="16" allow_overlap="true"/>
     </Rule>
   </Style>
 
