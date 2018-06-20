@@ -5,14 +5,12 @@
   <Style name="cali">
     <Rule>
       <Filter>[STATE] = 'California'</Filter>
-      <PolygonSymbolizer>
-	<CssParameter name="fill">#cfdea7</CssParameter>
-      </PolygonSymbolizer>
+      <PolygonSymbolizer fill="#cfdea7" />
     </Rule>
   </Style>
   <Style name="mtn">
     <Rule>
-      <PointSymbolizer file="./viewer/images/crosshair16x16.svg" type="svg" width="16" height="16" allow_overlap="true"/>
+      <PointSymbolizer file="./viewer/images/crosshair16x16.png" />
     </Rule>
   </Style>
 

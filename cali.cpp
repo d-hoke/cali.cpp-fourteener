@@ -126,7 +126,8 @@ int main ( int argc , char** argv)
             }
             provlines_style.add_rule(std::move(r));
 
-            rule provlines_rule(r);
+            //rule provlines_rule(r);
+            rule provlines_rule(std::move(r));
             //provlines_rule.append(mapnik::polygon_symbolizer(mapnik::color("cornsilk")));
             //provlines_rule.append(mapnik::polygon_symbolizer(mapnik::css_color_grammar::named_colors::from_string("cornsilk")));
             //provlines_rule.append(line_symbolizer(provlines_stk));
